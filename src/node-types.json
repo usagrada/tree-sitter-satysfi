@@ -1579,6 +1579,74 @@
     }
   },
   {
+    "type": "config",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "config_record",
+          "named": true
+        },
+        {
+          "type": "whitespace",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "config_dependencies",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "expr_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "config_record",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "config_dependencies",
+          "named": true
+        },
+        {
+          "type": "config_registries",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "config_registries",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "expr_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "constructor_branch",
     "named": true,
     "fields": {},
@@ -3991,6 +4059,25 @@
     }
   },
   {
+    "type": "header_use_package",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "literal_string",
+          "named": true
+        },
+        {
+          "type": "pkgname",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "headers",
     "named": true,
     "fields": {
@@ -4019,6 +4106,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "header_use_package",
+          "named": true
+        },
         {
           "type": "whitespace",
           "named": true
@@ -5744,6 +5835,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "config",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -5754,6 +5855,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "config",
+          "named": true
+        },
         {
           "type": "headers",
           "named": true
@@ -6724,6 +6829,10 @@
     "named": false
   },
   {
+    "type": "#[",
+    "named": false
+  },
+  {
     "type": "${",
     "named": false
   },
@@ -6944,6 +7053,14 @@
     "named": true
   },
   {
+    "type": "config",
+    "named": false
+  },
+  {
+    "type": "dependencies",
+    "named": false
+  },
+  {
     "type": "else",
     "named": false
   },
@@ -7036,6 +7153,10 @@
     "named": false
   },
   {
+    "type": "package",
+    "named": false
+  },
+  {
     "type": "persistent",
     "named": false
   },
@@ -7045,6 +7166,10 @@
   },
   {
     "type": "rec",
+    "named": false
+  },
+  {
+    "type": "registries",
     "named": false
   },
   {
@@ -7078,6 +7203,10 @@
   {
     "type": "type_var",
     "named": true
+  },
+  {
+    "type": "use",
+    "named": false
   },
   {
     "type": "val",
