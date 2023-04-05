@@ -1579,25 +1579,6 @@
     }
   },
   {
-    "type": "config",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "config_record",
-          "named": true
-        },
-        {
-          "type": "whitespace",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "config_dependencies",
     "named": true,
     "fields": {},
@@ -5698,6 +5679,25 @@
     }
   },
   {
+    "type": "pkg_config",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "config_record",
+          "named": true
+        },
+        {
+          "type": "whitespace",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "program_saty",
     "named": true,
     "fields": {
@@ -5841,7 +5841,7 @@
       "required": false,
       "types": [
         {
-          "type": "config",
+          "type": "pkg_config",
           "named": true
         }
       ]
@@ -5855,10 +5855,6 @@
       "multiple": true,
       "required": true,
       "types": [
-        {
-          "type": "config",
-          "named": true
-        },
         {
           "type": "headers",
           "named": true
@@ -5889,6 +5885,10 @@
         },
         {
           "type": "module_structure",
+          "named": true
+        },
+        {
+          "type": "pkg_config",
           "named": true
         },
         {

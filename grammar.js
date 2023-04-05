@@ -112,7 +112,7 @@ module.exports = grammar({
 
     program_satyh: ($) =>
       seq(
-        optional($.config),
+        optional($.pkg_config),
         optional($.headers),
         "module",
         $.module_name,
@@ -123,7 +123,7 @@ module.exports = grammar({
 
     program_saty: ($) =>
       seq(
-        optional($.config),
+        optional($.pkg_config),
         optional(field("stage", $.header_stage)),
         optional(field("headers", $.headers)),
         field("expr", $._expr)
@@ -133,7 +133,7 @@ module.exports = grammar({
 
     comment: (_) => token(seq("%", /.*/)),
 
-    config: ($) =>
+    pkg_config: ($) =>
       seq(
         "#[",
         optional($.whitespace),
