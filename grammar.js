@@ -180,8 +180,21 @@ module.exports = grammar({
       ),
     header_use_package: ($) =>
       choice(
-        seq("use", "package", optional("open"), $.pkgname, "\n"),
-        seq("use", optional("open"), $.pkgname, "of", $.literal_string, "\n")
+        seq(
+          "use",
+          "package",
+          optional("open"),
+          $.pkgname,
+          "\n"
+        ),
+        seq(
+          "use",
+          optional("open"),
+          $.pkgname,
+          "of",
+          $.literal_string,
+          "\n"
+        ),
       ),
 
     header_stage: (_) =>
