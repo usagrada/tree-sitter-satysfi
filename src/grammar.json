@@ -145,6 +145,14 @@
       "type": "PATTERN",
       "value": "[a-z][-A-Za-z0-9]*"
     },
+    "package_name": {
+      "type": "PATTERN",
+      "value": "[A-Z][-A-Za-z0-9\\.]*"
+    },
+    "package_path": {
+      "type": "PATTERN",
+      "value": "`[^\\n`]+`"
+    },
     "row_var": {
       "type": "PATTERN",
       "value": "'?[a-z][-A-Za-z0-9]*"
@@ -172,12 +180,12 @@
           "type": "REPEAT1",
           "content": {
             "type": "SYMBOL",
-            "name": "_header"
+            "name": "header"
           }
         }
       ]
     },
-    "_header": {
+    "header": {
       "type": "CHOICE",
       "members": [
         {
@@ -185,14 +193,18 @@
           "members": [
             {
               "type": "STRING",
-              "value": "@require:"
+              "value": "use"
+            },
+            {
+              "type": "STRING",
+              "value": "package"
             },
             {
               "type": "CHOICE",
               "members": [
                 {
-                  "type": "SYMBOL",
-                  "name": "whitespace"
+                  "type": "STRING",
+                  "value": "open"
                 },
                 {
                   "type": "BLANK"
@@ -201,10 +213,10 @@
             },
             {
               "type": "FIELD",
-              "name": "require",
+              "name": "pkgname",
               "content": {
                 "type": "SYMBOL",
-                "name": "pkgname"
+                "name": "package_name"
               }
             },
             {
@@ -218,22 +230,35 @@
           "members": [
             {
               "type": "STRING",
-              "value": "@import:"
+              "value": "use"
             },
             {
-              "type": "REPEAT",
-              "content": {
-                "type": "PATTERN",
-                "value": "\\s"
-              }
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "open"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
             },
             {
               "type": "FIELD",
-              "name": "import",
+              "name": "pkgname",
               "content": {
                 "type": "SYMBOL",
-                "name": "pkgname"
+                "name": "package_name"
               }
+            },
+            {
+              "type": "STRING",
+              "value": "of"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "package_path"
             },
             {
               "type": "STRING",
@@ -5466,4 +5491,3 @@
   "inline": [],
   "supertypes": []
 }
-

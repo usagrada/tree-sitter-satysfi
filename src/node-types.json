@@ -3955,6 +3955,32 @@
     }
   },
   {
+    "type": "header",
+    "named": true,
+    "fields": {
+      "pkgname": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "package_name",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "package_path",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "header_stage",
     "named": true,
     "fields": {
@@ -3993,34 +4019,13 @@
   {
     "type": "headers",
     "named": true,
-    "fields": {
-      "import": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "pkgname",
-            "named": true
-          }
-        ]
-      },
-      "require": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "pkgname",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
-          "type": "whitespace",
+          "type": "header",
           "named": true
         }
       ]
@@ -6816,14 +6821,6 @@
     "named": false
   },
   {
-    "type": "@import:",
-    "named": false
-  },
-  {
-    "type": "@require:",
-    "named": false
-  },
-  {
     "type": "@stage:",
     "named": false
   },
@@ -7036,12 +7033,20 @@
     "named": false
   },
   {
-    "type": "persistent",
+    "type": "package",
     "named": false
   },
   {
-    "type": "pkgname",
+    "type": "package_name",
     "named": true
+  },
+  {
+    "type": "package_path",
+    "named": true
+  },
+  {
+    "type": "persistent",
+    "named": false
   },
   {
     "type": "rec",
@@ -7080,16 +7085,16 @@
     "named": true
   },
   {
+    "type": "use",
+    "named": false
+  },
+  {
     "type": "val",
     "named": false
   },
   {
     "type": "when",
     "named": false
-  },
-  {
-    "type": "whitespace",
-    "named": true
   },
   {
     "type": "with",

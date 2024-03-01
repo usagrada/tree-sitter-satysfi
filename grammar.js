@@ -44,8 +44,10 @@ const OPERATOR_PREC = [
 function tokens() {
   const VARIABLE_NAME = /[a-z][-A-Za-z0-9]*/;
   const MODULE_NAME = /[A-Z][-A-Za-z0-9]*/;
+  const PACAKGE_NAME = /[A-Z][-A-Za-z0-9\.]*/;
   const TYPE_VARIABLE = /'[a-z][-A-Za-z0-9]*/;
   const ROW_VARIABLE = /'?[a-z][-A-Za-z0-9]*/;
+  const PACAKGE_PATH = /`[^\n`]+`/;
 
   return {
     whitespace: /\s+/,
@@ -58,6 +60,8 @@ function tokens() {
     variant_name: MODULE_NAME,
     module_name: MODULE_NAME,
     label_name: VARIABLE_NAME,
+    package_name: PACAKGE_NAME,
+    package_path: PACAKGE_PATH,
 
     // row_variable のパターンは var_name を内包するため、var_name の後ろに置く
     row_var: ROW_VARIABLE,
@@ -132,22 +136,24 @@ module.exports = grammar({
     comment: (_) => token(seq("%", /.*/)),
 
     //$1 header
-    headers: ($) => seq(repeat1($._header)),
+    headers: ($) => seq(repeat1($.header)),
 
-    _header: ($) =>
+    header: ($) =>
       choice(
         seq(
-          "@require:",
-          optional($.whitespace),
+          "use",
+          "package",
+          optional("open"),
           // $.no_extras,
-          field("require", $.pkgname),
+          field("pkgname", $.package_name),
           "\n",
         ),
         seq(
-          "@import:",
-          repeat(/\s/),
-          // $.no_extras,
-          field("import", $.pkgname),
+          "use",
+          optional("open"),
+          field("pkgname", $.package_name),
+          "of",
+          $.package_path,
           "\n",
         ),
       ),
